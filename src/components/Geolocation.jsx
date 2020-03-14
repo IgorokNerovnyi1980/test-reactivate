@@ -23,6 +23,7 @@ const Geolocation = (
         fhChange = () => { },
 
     }) => {
+        console.log(checked, typeof(checked))
 
     return(
 <Wrapper>
@@ -30,7 +31,7 @@ const Geolocation = (
     <input 
         type='checkbox'
         name='myGeolocation'
-        checked={checked}
+        checked={Boolean(checked)}
         onChange={fhChange}
     />
 </Wrapper>

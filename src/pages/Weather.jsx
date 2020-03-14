@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React,{ useState, useEffect } from 'react';
 import styled from 'styled-components';
 //components
 import WarningWindow from '../components/Warning';
@@ -14,16 +14,35 @@ const Wrapper = styled.div`
 
 const Base = () => {
 
+    const getLocal = function(){
+        return JSON.parse(localStorage.getItem('resolution'));
+    };
+
     const [ checkValue, setCheckValue ] = useState(false);
     const [ inputValue, setInputValue ] = useState('');
-    const [resolution, setResolution] = useState(false);
-    const [ isWarning, setIsWarning ] = useState(false)
+    const [ resolution, setResolution ] = useState(false);
+    const [ isWarning, setIsWarning ] = useState(false);
+
+    useEffect(() => {
+        const localValue = getLocal();
+        setCheckValue(localValue);
+
+        console.log('use', localValue, typeof(localValue))
+        if(localValue === false){
+            console.log('if')
+            setIsWarning(true)
+        }
+
+    },[]); // eslint-disable-line
+
 
     const handleInputsChange = e => {
         if(e.target.name === 'myGeolocation'){
             setCheckValue(e.target.checked)
             setResolution(e.target.checked);
-            // setIsWarning(true);
+            localStorage.setItem('resolution', e.target.checked);
+
+            
         } else if(e.target.name === 'position'){
             setInputValue(e.target.value);
         }  
@@ -38,9 +57,16 @@ const Base = () => {
     const handleButtonClick = e => {
         if(e.target.name === 'Yes'){
             setResolution(true);
+            setCheckValue(true);
+            setIsWarning(false);
+            localStorage.setItem('resolution', true);
+        }else if(e.target.name === 'No'){
+            setResolution(false);
+            setCheckValue(false);
             setIsWarning(false);
         }
     }
+
 
     return(
         <Wrapper>
@@ -56,6 +82,7 @@ const Base = () => {
                 inputValue={inputValue}
                 fhChange={handleInputsChange}
                 fnSubmit={handleSubmit}
+                opacity={isWarning ? 0 : 1}
             />
             }
         </Wrapper>

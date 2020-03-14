@@ -10,6 +10,7 @@ const Wrapper = styled.form`
     transform:translate(-50%, -50%);
     min-width:250px;
     min-height:50px;
+    opacity:${props => props.opacity};
     background-color:white;
     display:flex;
     justify-content:center;
@@ -22,13 +23,14 @@ const Wrapper = styled.form`
 const Input = (
     {
         inputValue='',
+        opacity = 0,
         fhChange = () => { },
         fnSubmit = () => { }
 
     }) => {
 
     return(
-       <Wrapper onSubmit={fnSubmit}>
+       <Wrapper onSubmit={fnSubmit} opacity={opacity}>
            
                <input 
                     type='text'
