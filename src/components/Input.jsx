@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+//components
+import Button from './Button';
 
 const Wrapper = styled.form`
     position: fixed;
@@ -35,11 +37,10 @@ const Input = (
                     onChange={fhChange}
                     placeholder='enter name of Location'
                />
-               <button
-                type='submit'
-               >
-                   Search
-               </button>
+               <Button
+                    type='submit'
+                    text='Search'
+                />
        </Wrapper> 
     )
 };

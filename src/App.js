@@ -1,7 +1,7 @@
 import React from 'react';
 import {createGlobalStyle} from 'styled-components';
 //pages
-import Base from './pages/Base';
+import Weather from './pages/Weather';
 
 
 const GlobalStyle = createGlobalStyle `
@@ -19,6 +19,11 @@ const GlobalStyle = createGlobalStyle `
   }
   h1, h2, h3, h4,h5, h6{
     font-weight: normal;
+  }
+  input, button{
+    outline:none;
+    border:none;
+    background:none;
   }
 
   body{
@@ -44,7 +49,7 @@ function App() {
     return (
         <> 
           < GlobalStyle />
-          <Base/>
+          <Weather />
         </>
     );
 }

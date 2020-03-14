@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import WarningWindow from '../components/Warning';
 import Geolocation from '../components/Geolocation';
 import Input from '../components/Input';
+import YourLocation from '../components/YourLocation';
 
 const Wrapper = styled.div`
     width:100vw;
@@ -15,12 +16,14 @@ const Base = () => {
 
     const [ checkValue, setCheckValue ] = useState(false);
     const [ inputValue, setInputValue ] = useState('');
-    const [root, setRoot] = useState(false);
+    const [resolution, setResolution] = useState(false);
+    const [ isWarning, setIsWarning ] = useState(false)
 
     const handleInputsChange = e => {
         if(e.target.name === 'myGeolocation'){
             setCheckValue(e.target.checked)
-            setRoot(e.target.checked);
+            setResolution(e.target.checked);
+            // setIsWarning(true);
         } else if(e.target.name === 'position'){
             setInputValue(e.target.value);
         }  
@@ -30,6 +33,13 @@ const Base = () => {
         e.preventDefault();
         console.log('submit')
     
+    };
+
+    const handleButtonClick = e => {
+        if(e.target.name === 'Yes'){
+            setResolution(true);
+            setIsWarning(false);
+        }
     }
 
     return(
@@ -38,12 +48,16 @@ const Base = () => {
                 checked={checkValue}
                 fhChange={handleInputsChange}
             />
-            {root && <WarningWindow/>}
+            { isWarning && <WarningWindow fnButton={handleButtonClick} /> }
+            {resolution ?
+             <YourLocation />
+            :
             <Input 
                 inputValue={inputValue}
                 fhChange={handleInputsChange}
                 fnSubmit={handleSubmit}
             />
+            }
         </Wrapper>
     )
 };
