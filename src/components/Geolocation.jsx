@@ -23,7 +23,6 @@ const Geolocation = (
         fhChange = () => { },
 
     }) => {
-        console.log(checked, typeof(checked))
 
     return(
 <Wrapper>

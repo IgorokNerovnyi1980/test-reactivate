@@ -5,6 +5,7 @@ import WarningWindow from '../components/Warning';
 import Geolocation from '../components/Geolocation';
 import Input from '../components/Input';
 import YourLocation from '../components/YourLocation';
+import Slider from '../components/Slider'
 
 const Wrapper = styled.div`
     width:100vw;
@@ -18,6 +19,7 @@ const Base = () => {
         return JSON.parse(localStorage.getItem('resolution'));
     };
 
+    const [sliderValue, setSliderValue] = useState(5)
     const [ checkValue, setCheckValue ] = useState(false);
     const [ inputValue, setInputValue ] = useState('');
     const [ resolution, setResolution ] = useState(false);
@@ -27,9 +29,7 @@ const Base = () => {
         const localValue = getLocal();
         setCheckValue(localValue);
 
-        console.log('use', localValue, typeof(localValue))
         if(localValue === false){
-            console.log('if')
             setIsWarning(true)
         }
 
@@ -40,12 +40,12 @@ const Base = () => {
         if(e.target.name === 'myGeolocation'){
             setCheckValue(e.target.checked)
             setResolution(e.target.checked);
-            localStorage.setItem('resolution', e.target.checked);
-
-            
+            localStorage.setItem('resolution', e.target.checked);  
         } else if(e.target.name === 'position'){
             setInputValue(e.target.value);
-        }  
+        } else if(e.target.name === 'slider'){
+            setSliderValue(e.target.value)
+        }
     };
 
     const handleSubmit = e => {
@@ -85,6 +85,10 @@ const Base = () => {
                 opacity={isWarning ? 0 : 1}
             />
             }
+            <Slider
+                value={sliderValue}
+                fnInput={handleInputsChange}
+            />
         </Wrapper>
     )
 };
