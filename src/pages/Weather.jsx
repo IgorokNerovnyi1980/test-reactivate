@@ -1,5 +1,6 @@
 import React,{ useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { parserColor } from '../helpers/parserColor'
 //components
 import WarningWindow from '../components/Warning';
 import Geolocation from '../components/Geolocation';
@@ -10,7 +11,7 @@ import Slider from '../components/Slider'
 const Wrapper = styled.div`
     width:100vw;
     height:100vh;
-    background-color:grey;
+    background-color:${props => `RGB(${props.bg})`};
 `;
 
 const Base = () => {
@@ -18,7 +19,7 @@ const Base = () => {
     const getLocal = function(){
         return JSON.parse(localStorage.getItem('resolution'));
     };
-
+    const [ color, setColor ] = useState('0,255,255');
     const [sliderValue, setSliderValue] = useState(5)
     const [ checkValue, setCheckValue ] = useState(false);
     const [ inputValue, setInputValue ] = useState('');
@@ -28,12 +29,16 @@ const Base = () => {
     useEffect(() => {
         const localValue = getLocal();
         setCheckValue(localValue);
-
         if(localValue === false){
             setIsWarning(true)
         }
 
     },[]); // eslint-disable-line
+
+    useEffect(()=>{
+        console.log('use')
+        setColor(parserColor(sliderValue))
+    },[sliderValue])
 
 
     const handleInputsChange = e => {
@@ -69,7 +74,7 @@ const Base = () => {
 
 
     return(
-        <Wrapper>
+        <Wrapper bg={color}>
             <Geolocation
                 checked={checkValue}
                 fhChange={handleInputsChange}

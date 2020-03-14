@@ -44,7 +44,7 @@ const Slider = (
             <Input
                type='range'
                min='1'
-               max='100'
+               max='765'
                step='1'
                name='slider'
                value={value}
