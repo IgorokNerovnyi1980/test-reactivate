@@ -2,10 +2,7 @@ import React,{ useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { parserColor } from '../helpers/parserColor'
 //components
-import WarningWindow from '../components/Warning';
 import Geolocation from '../components/Geolocation';
-import Input from '../components/Input';
-import YourLocation from '../components/YourLocation';
 import Slider from '../components/Slider'
 
 const Wrapper = styled.div`
@@ -16,27 +13,12 @@ const Wrapper = styled.div`
 
 const Base = () => {
 
-    const getLocal = function(){
-        return JSON.parse(localStorage.getItem('resolution'));
-    };
     const [ color, setColor ] = useState('0,255,255');
     const [sliderValue, setSliderValue] = useState(5)
     const [ checkValue, setCheckValue ] = useState(false);
     const [ inputValue, setInputValue ] = useState('');
-    const [ resolution, setResolution ] = useState(false);
-    const [ isWarning, setIsWarning ] = useState(false);
-
-    useEffect(() => {
-        const localValue = getLocal();
-        setCheckValue(localValue);
-        if(localValue === false){
-            setIsWarning(true)
-        }
-
-    },[]); // eslint-disable-line
 
     useEffect(()=>{
-        console.log('use')
         setColor(parserColor(sliderValue))
     },[sliderValue])
 
@@ -44,8 +26,6 @@ const Base = () => {
     const handleInputsChange = e => {
         if(e.target.name === 'myGeolocation'){
             setCheckValue(e.target.checked)
-            setResolution(e.target.checked);
-            localStorage.setItem('resolution', e.target.checked);  
         } else if(e.target.name === 'position'){
             setInputValue(e.target.value);
         } else if(e.target.name === 'slider'){
@@ -60,15 +40,11 @@ const Base = () => {
     };
 
     const handleButtonClick = e => {
-        if(e.target.name === 'Yes'){
-            setResolution(true);
+        if(e.target.name === 'Yes'){  
             setCheckValue(true);
-            setIsWarning(false);
             localStorage.setItem('resolution', true);
         }else if(e.target.name === 'No'){
-            setResolution(false);
             setCheckValue(false);
-            setIsWarning(false);
         }
     }
 
@@ -79,17 +55,6 @@ const Base = () => {
                 checked={checkValue}
                 fhChange={handleInputsChange}
             />
-            { isWarning && <WarningWindow fnButton={handleButtonClick} /> }
-            {resolution ?
-             <YourLocation />
-            :
-            <Input 
-                inputValue={inputValue}
-                fhChange={handleInputsChange}
-                fnSubmit={handleSubmit}
-                opacity={isWarning ? 0 : 1}
-            />
-            }
             <Slider
                 value={sliderValue}
                 fnInput={handleInputsChange}

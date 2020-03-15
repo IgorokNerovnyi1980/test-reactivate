@@ -7,6 +7,7 @@ const Wrapper = styled.button`
     padding:5px 8px;
     background-color:blue;
     border:1px solid blue;
+    border-radius:2px;
     color:white;
     cursor:pointer;
     transition:0.2s;
