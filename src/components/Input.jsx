@@ -5,43 +5,50 @@ import Button from './Button';
 
 const Wrapper = styled.form`
     position: fixed;
-    top:50%;
+    top:${props => `${props.top}%`};
     left:50%;
     transform:translate(-50%, -50%);
     min-width:250px;
     min-height:50px;
-    opacity:${props => props.opacity};
-    background-color:white;
+    border-radius:3px;
+    border-bottom:1px solid #d3d3d3;
     display:flex;
     justify-content:center;
     align-items:center;
+    
     input{
         padding-left:5px;
+        
     }
 `;
 
 const Input = (
     {
-        inputValue='',
-        opacity = 0,
+        inputValue = '',
+        inputName = 'default',
+        inputType = 'text',
+        btnLabel,
+        btbType,
+        placeholder = '',
+        top = '50',
         fhChange = () => { },
         fnSubmit = () => { }
 
     }) => {
 
     return(
-       <Wrapper onSubmit={fnSubmit} opacity={opacity}>
+       <Wrapper onSubmit={fnSubmit} top={top} name={inputName}>
            
                <input 
-                    type='text'
-                    name='position'
+                    type={inputType}//'text'
+                    name={inputName}//'position'
                     value={inputValue}
                     onChange={fhChange}
-                    placeholder='enter name of Location'
+                    placeholder={placeholder} 
                />
                <Button
-                    type='submit'
-                    text='Search'
+                    type={btbType}
+                    text={btnLabel}
                 />
        </Wrapper> 
     )
