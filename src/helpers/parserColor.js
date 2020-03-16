@@ -19,7 +19,7 @@ export const parseDeg = function (num){
     const coeficient = 19;
 
     if(num <= -10){
-        return 0
+        return 1
     }else if(num >= -9){
        if(num < 0){
             return Math.round((10 - Math.abs(num)) * coeficient);

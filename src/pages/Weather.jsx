@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 const Base = () => {
 
     const [ color, setColor ] = useState('0,255,255');
-    const [sliderValue, setSliderValue] = useState(5)
+    const [sliderValue, setSliderValue] = useState(0)
     const [ checkValue, setCheckValue ] = useState(false);
     const [ locationValue, setLocationValue ] = useState('');
     const [ degValue, setDegValue] = useState('');
@@ -56,10 +56,10 @@ const Base = () => {
           };
     
     };
-
+    console.log(color)
 
     return(
-        <Wrapper bg={color}>
+        <Wrapper bg={ (color === '0,255,255' ? '211, 222, 222' : color)}>
             <Geolocation
                 checked={checkValue}
                 fhChange={handleInputsChange}
