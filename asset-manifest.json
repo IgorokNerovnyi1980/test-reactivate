@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/test-reactivate/static/js/main.9bfbe96d.chunk.js",
-    "main.js.map": "/test-reactivate/static/js/main.9bfbe96d.chunk.js.map",
+    "main.js": "/test-reactivate/static/js/main.85400a36.chunk.js",
+    "main.js.map": "/test-reactivate/static/js/main.85400a36.chunk.js.map",
     "runtime-main.js": "/test-reactivate/static/js/runtime-main.7f465c9f.js",
     "runtime-main.js.map": "/test-reactivate/static/js/runtime-main.7f465c9f.js.map",
     "static/js/2.ac2f7847.chunk.js": "/test-reactivate/static/js/2.ac2f7847.chunk.js",
     "static/js/2.ac2f7847.chunk.js.map": "/test-reactivate/static/js/2.ac2f7847.chunk.js.map",
     "index.html": "/test-reactivate/index.html",
-    "precache-manifest.b4063e6d4ce07aa2c80e351251c5c3cf.js": "/test-reactivate/precache-manifest.b4063e6d4ce07aa2c80e351251c5c3cf.js",
+    "precache-manifest.a2a5e72709fcece8f7c9eaf455a9f1f9.js": "/test-reactivate/precache-manifest.a2a5e72709fcece8f7c9eaf455a9f1f9.js",
     "service-worker.js": "/test-reactivate/service-worker.js",
     "static/js/2.ac2f7847.chunk.js.LICENSE.txt": "/test-reactivate/static/js/2.ac2f7847.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.7f465c9f.js",
     "static/js/2.ac2f7847.chunk.js",
-    "static/js/main.9bfbe96d.chunk.js"
+    "static/js/main.85400a36.chunk.js"
   ]
 }
