@@ -13,7 +13,7 @@ const Wrapper = styled.form`
     border-radius:3px;
     border-bottom:1px solid #d3d3d3;
     display:flex;
-    justify-content:center;
+    justify-content:space-between;
     align-items:center;
     
     input{

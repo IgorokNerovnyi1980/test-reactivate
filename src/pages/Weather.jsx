@@ -1,6 +1,6 @@
 import React,{ useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { parserColor } from '../helpers/parserColor'
+import { parseColor, parseDeg } from '../helpers/parserColor'
 //components
 import Geolocation from '../components/Geolocation';
 import Slider from '../components/Slider';
@@ -21,7 +21,7 @@ const Base = () => {
     const [ degValue, setDegValue] = useState('');
 
     useEffect(()=>{
-        setColor(parserColor(sliderValue))
+        setColor(parseColor(sliderValue))
     },[sliderValue])
 
 
@@ -50,7 +50,7 @@ const Base = () => {
                 console.log('submit',e.target.name, locationValue);
                 break
             case 'deg': 
-                console.log('submit',e.target.name, degValue);
+                setSliderValue(parseDeg(degValue));
                 break
             default: return;
           };
